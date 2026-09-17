@@ -1,21 +1,23 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "incremental": false,
     "isolatedModules": true,
-    "jsx": "react",
-    "lib": ["es2017", "dom"],
-    "module": "commonjs",
+    "jsx": "react-jsx",
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "module": "preserve",
+    "moduleDetection": "force",
+    "moduleResolution": "bundler",
     "noImplicitAny": true,
-    "rootDir": "./src",
+    "resolveJsonModule": true,
+    "rootDir": ".",
     "skipLibCheck": true,
-    "target": "es5"
+    "strict": true,
+    "target": "esnext",
+    "verbatimModuleSyntax": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "tsup.config.ts"
   ],
 }

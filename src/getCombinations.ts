@@ -1,4 +1,4 @@
-import { Args, ArgTypes } from "@storybook/addons";
+import type { Args, ArgTypes } from "storybook/internal/types";
 // @ts-expect-error
 import cartesian from "cartesian";
 

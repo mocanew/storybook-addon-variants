@@ -1,6 +1,4 @@
-if (module && module.hot && module.hot.decline) {
-  module.hot.decline();
-}
+import { definePreviewAddon } from "storybook/internal/csf";
+import addonAnnotations from "./preview";
 
-// make it work with --isolatedModules
-export default {};
+export default () => definePreviewAddon(addonAnnotations);

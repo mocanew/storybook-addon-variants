@@ -1,19 +1,18 @@
-import React, { useMemo } from "react";
-import { DecoratorFunction } from "@storybook/addons";
-import { styled } from "@storybook/theming";
+import { useMemo } from "react";
+import type { DecoratorFunction, Renderer } from "storybook/internal/types";
 import { getCombinations } from "./getCombinations";
 
-const Grid = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  align-items: center;
-`;
+const gridStyle = {
+  alignItems: "center",
+  display: "flex",
+  flexWrap: "wrap",
+  gap: 30,
+  listStyle: "none",
+  margin: 0,
+  padding: 0,
+} as const;
 
-type DecFn = DecoratorFunction<JSX.Element>;
+type DecFn = DecoratorFunction<Renderer>;
 type StoryParams = Parameters<DecFn>;
 type StoryFnType = StoryParams[0];
 type ContextType = StoryParams[1];
@@ -34,7 +33,7 @@ function CombinationGrid({ StoryFn, context }: CombinationGridProps) {
   }
 
   return (
-    <Grid>
+    <ul style={gridStyle}>
       {combinations.map((combination, index) => (
         <li key={index} title={JSON.stringify(combination, null, 2)}>
           {StoryFn({
@@ -45,17 +44,18 @@ function CombinationGrid({ StoryFn, context }: CombinationGridProps) {
           })}
         </li>
       ))}
-    </Grid>
+    </ul>
   );
 }
 
 export const withVariants: DecFn = (StoryFn, context) => {
-  const { globals, parameters } = context
-  const shouldShowVariants = globals.variantsAddon === true || parameters.variants?.enable === true
+  const { globals, parameters } = context;
+  const shouldShowVariants =
+    globals.variantsAddon === "shown" || parameters.variants?.enable === true;
 
   if (shouldShowVariants) {
     return <CombinationGrid StoryFn={StoryFn} context={context} />;
   }
-  
+
   return StoryFn();
 };

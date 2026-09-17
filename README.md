@@ -9,6 +9,8 @@
 
 Show all variants of a component in a grid
 
+Requires Storybook 10, React 18 or 19, and Node.js 20.19+ or 22.12+.
+
 - 📦 No extra code required for creating variants.
 - 📝 Editing from Controls table and editor re-renders all variants.
 
@@ -20,12 +22,12 @@ Show all variants of a component in a grid
 npm install storybook-addon-variants
 ```
 
-#### Register the addon in your main.js file
+#### Register the addon in your main.ts file
 
 ```js
-// .storybook/main.js
+// .storybook/main.ts
 
-module.exports = {
+export default {
   stories: [...],
   addons: ["storybook-addon-variants"],
 };
